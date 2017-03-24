@@ -47,6 +47,7 @@ def mouseclick(pos):
         #Expose card if only one other card has been chosen
        
     if state == 1 and cards[pos[0]//50] != choice_a:
+        turns += 1
         choice_b = cards[pos[0]//50]
         label.set_text("Turns: "+str(turns))
         choice_b[1] = True
@@ -54,13 +55,12 @@ def mouseclick(pos):
             choice_a[2] = True
             choice_b[2] = True
             state = 0
-            turns += 1
+            
             label.set_text("Turns: "+str(turns))
             choice_a = None
             choice_b = None
             return        
         else:
-            turns += 1
             state = 2
             return
         
