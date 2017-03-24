@@ -21,7 +21,7 @@ def new_game():
     global choice_b
     numbers = list(range(TOTAL_CARDS / 2) + range(TOTAL_CARDS / 2))
     random.shuffle(numbers)
-    print numbers
+    #print numbers
     for i in range(len(numbers)):
         cards.append([numbers[i],False,False])
 
@@ -37,14 +37,10 @@ def mouseclick(pos):
         cards[pos[0]//50][1] = True
         choice_a = cards[pos[0]//50]
         state += 1
-        print "You chose", choice_a[0]
-        print 'state =',state
         label.set_text("Turns: "+str(turns))
         return
     
     if state == 1 and cards[pos[0]//50] == choice_a:
-            print "Cut it out"
-            print 'state =',state
             label.set_text("Turns: "+str(turns))
             return   
         
@@ -58,27 +54,23 @@ def mouseclick(pos):
             choice_a[2] = True
             choice_b[2] = True
             state = 0
-            print "You chose", choice_b[0], "- it's a match!"
-            print 'state =',state
             turns += 1
             label.set_text("Turns: "+str(turns))
             choice_a = None
             choice_b = None
-            print choice_a
-            print choice_b
             return        
         else:
             turns += 1
             state = 2
-            print state
             return
         
     if state == 2:
         choice_a[1] = False
         choice_b[1] = False
         choice_b = None
-        choice_a = None
-        state = 0
+        choice_a = cards[pos[0]//50]
+        cards[pos[0]//50][1] = True
+        state = 1
         label.set_text("Turns: "+str(turns))
         return
     
