@@ -16,14 +16,13 @@ def new_game():
     turns = 0
     label.set_text("Turns: "+str(turns))
     global cards
-    cards = []
+    
     global choice_a
     global choice_b
     numbers = list(range(TOTAL_CARDS / 2) + range(TOTAL_CARDS / 2))
     random.shuffle(numbers)
-    #print numbers
-    for i in range(len(numbers)):
-        cards.append([numbers[i],False,False])
+    cards = [[i,False,False] for i in numbers]
+    
 
 # define event handlers
 def mouseclick(pos):
